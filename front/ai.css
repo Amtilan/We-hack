@@ -1,0 +1,137 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+  }
+  
+  body{
+    width: 100%;
+    height: 100vh;
+    background: rgb(33,33,83);
+    background: rgb(33,33,83); 
+  }
+  
+  .chat{
+    display: flex;
+    gap: 20px;
+    padding: 25px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 300;
+  }
+    .chat img{
+    width: 35px;
+    height: 35px;
+  }
+  
+  .response{
+    background: rgb(30,21,191);
+   
+    background: rgb(33,33,83);
+  }
+  #user-input{
+    margin-top:-50px;
+    display:grid;
+  }
+  
+  .messagebar{
+    position: fixed;
+    bottom: 0;
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #494b59;
+    background-color: #33343f;
+  }
+  
+  .messagebar .bar-wrapper{
+    background-color: #494b59;
+    border-radius: 5px;
+    width: 60vw;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  
+  .bar-wrapper input{
+    width: 100%;
+    padding: 5px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: none;
+    color: rgb(243,163,102);
+  }
+  
+  .bar-wrapper input::placeholder{
+    color: rgb(243,163,102);
+  }
+  
+  .messagebar button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: rgb(243,163,102);
+    cursor: pointer;
+  }
+  #chat-form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px; /* Максимальная ширина, чтобы не занимало всю ширину экрана */
+    margin: 20px auto; /* Отступы для центрирования */
+    padding: 10px;
+    height:50px;
+   
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top:500px;}
+  #user-input{
+    flex: 1;
+    padding: 8px;
+    border: none;
+    margin-top:20px;
+    display:grid;
+    border-radius: 10px;
+    outline: none;
+  }
+  
+  
+  button{
+    padding: 8px 16px;
+    border: none;
+    margin-top:15px;
+    border-radius: 15px;
+    background-color: rgb(33,33,83); /* Цвет кнопки */
+    color: rgb(243,163,102);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .main-icon{
+    transform: scale(3.0);
+    margin-left:40px;
+    margin-top:30px;
+  }
+  #text{
+    margin-left:60px;
+    height:70px;
+    font-size:18px;
+    display:grid;
+    color:rgb(243,163,102);
+  }
+  
+  .send-button:hover {
+    background-color: #0056b3; /* Изменение цвета при наведении */
+  }
+  #chat-box{
+    color:rgb(243,163,102);
+    margin-left:30px;
+    font-weight:bold;
+  }
