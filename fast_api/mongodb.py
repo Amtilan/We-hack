@@ -14,16 +14,17 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 class Token(BaseModel):
     access_token: str
     token_type: str
+    
 class ScheduleItem(BaseModel):
     room: str
-    time: str  # Время в формате строки, например "14:00-15:00"
-
+    time: str 
+    
 class Schedule(BaseModel):
-    username: str  # Пользователь, к которому привязано расписание
+    username: str 
     schedule_items: List[ScheduleItem]
 class User(BaseModel):
     email: EmailStr
-    username: str = Field(..., min_length=3, max_length=20)
+    username: str = Field(..., min_length=3, max_length=40)
     password: str
 
 class MongoDBManager:
@@ -39,8 +40,8 @@ class MongoDBManager:
         self.collection.insert_one(user_data.dict())
         return "User registered successfully"
 
-    def authenticate_user(self, username: str, password: str):
-        user = self.collection.find_one({"username": username})
+    def authenticate_user(self, email: str, password: str):
+        user = self.collection.find_one({"email": email})
         if not user:
             return False
         if not self.verify_password(password, user["password"]):

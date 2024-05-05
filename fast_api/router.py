@@ -24,7 +24,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    return {"access_token": user["username"], "token_type": "bearer"}
+    return {"access_token": user["email"], "token_type": "bearer"}
 
 
 @router.get("/users/me", response_model=User)

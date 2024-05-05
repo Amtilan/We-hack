@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Sign up / Login Form</title>
     <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="slide-navbar-style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
@@ -51,32 +52,31 @@
       function login() {
         const email = document.querySelector('input[name="email"]').value;
         const password = document.querySelector('input[name="pswd"]').value;
-        const url = "http://127.0.0.1:8000/token";
+        const url = "https://we-hack-production.up.railway.app/token";
         fetch(url, {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-          body: `username=${encodeURIComponent(
-            email
-          )}&password=${encodeURIComponent(password)}`,
+          body: `username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
         })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Login failed");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            console.log("Login Successful:", data);
-            localStorage.setItem("token", data.access_token);
-            alert("Login successful! Token stored.");
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-            alert("Login failed: " + error.message);
-          });
-
+        .then(response => {
+          if (!response.ok) {
+            return response.json().then(error => throw new Error(error.detail || "Login failed"));
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log("Login Successful:", data);
+          localStorage.setItem("token", data.access_token);
+          alert("Login successful! Token stored.");
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          alert("Login failed: " + error.message);
+        });
+      }
+      
 
 		  
         function signUp() {
