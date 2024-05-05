@@ -35,7 +35,7 @@ class MongoDBManager:
 
     def insert_user(self, user_data: User):
         user_data.password = self.hash_password(user_data.password)
-        if self.collection.find_one({"email": user_data.email}) or self.collection.find_one({"username": user_data.username}):
+        if self.collection.find_one({"email": user_data.username}) or self.collection.find_one({"username": user_data.username}):
             raise HTTPException(status_code=400, detail="Username or email already registered")
         self.collection.insert_one(user_data.dict())
         return "User registered successfully"
