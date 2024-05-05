@@ -49,55 +49,53 @@
     </div>
 
     <script>
-      function login() {
-        const email = document.querySelector('input[name="email"]').value;
-        const password = document.querySelector('input[name="pswd"]').value;
-        const url = "https://we-hack-production.up.railway.app/token";
-        fetch(url, {
-          method: "POST",
+      function login(event) {
+        event.preventDefault(); // Предотвратить стандартное поведение формы
+    
+        const username = document.querySelector('input[name="username"]').value;
+        const password = document.querySelector('input[name="password"]').value;
+        const url = 'https://we-hack-production.up.railway.app/token'; // Замените URL на ваш API endpoint
+        
+        axios.post(url, `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`, {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: `username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+          }
+        })
+        .then(function (response) {
+          console.log('Authentication successful:', response.data);
+          localStorage.setItem('token', response.data.access_token); // Сохраняем токен в localStorage
+          alert('You are now logged in.');
+          // Здесь можно добавить перенаправление на другую страницу
+          window.location.href = 'schelude.html'; // Например, перенаправить на домашнюю страницу
+        })
+        .catch(function (error) {
+          console.error('Authentication error:', error);
+          alert('Authentication failed: ' + error.response.data.detail); // Показываем сообщение об ошибке, если оно есть
+        });
+      }
+      function signUp() {
+        const username = document.querySelector('input[name="txt"]').value;
+        const email = document.querySelector('input[name="email"]').value;
+        const password = document.querySelector('input[name="pswd"]').value;
+      
+        axios.post("https://we-hack-production.up.railway.app/register/", {
+          username: username,
+          email: email,
+          password: password
+        }, {
+          headers: {
+            "Content-Type": "application/json",
+          }
         })
         .then(response => {
-          if (!response.ok) {
-            return response.json().then(error => throw new Error(error.detail || "Login failed"));
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log("Login Successful:", data);
-          localStorage.setItem("token", data.access_token);
-          alert("Login successful! Token stored.");
+          console.log("Registration Successful:", response.data);
         })
         .catch(error => {
           console.error("Error:", error);
-          alert("Login failed: " + error.message);
+          alert("Registration failed: " + error.message);
         });
       }
+      </script>
       
-
-		  
-        function signUp() {
-          const username = document.querySelector('input[name="txt"]').value;
-          const email = document.querySelector('input[name="email"]').value;
-          const password = document.querySelector('input[name="pswd"]').value;
-
-          fetch("http://127.0.0.1:8000/register/", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, email, password }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log(data);
-            })
-            .catch((error) => console.error("Error:", error));
-        }
-      }
-    </script>
   </body>
 </html>
