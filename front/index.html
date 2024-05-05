@@ -41,17 +41,19 @@
       document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const email = document.querySelector('#loginUsername').value;
+            const username = document.querySelector('#loginUsername').value;
             const password = document.querySelector('#loginPassword').value;
             const url = 'https://we-hack-production.up.railway.app/token';
     
-            axios.post(url, `username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`, {
+            axios.post(url, `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`, {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 }
             })
             .then(response => {
                 console.log('Authentication successful:', response.data);
+                localStorage.setItem('username', username);
+                <!-- localStorage.setItem('email', email);  -->
                 localStorage.setItem('token', response.data.access_token);
                 window.location.href = 'schedule.html';
             })
@@ -78,7 +80,8 @@
             })
             .then(response => {
                 console.log("Registration Successful:", response.data);
-                alert('Registration successful. You can now log in.');
+                localStorage.setItem('username', username);
+                <!-- localStorage.setItem('email', email);  -->
             })
             .catch(error => {
                 console.error("Error:", error);

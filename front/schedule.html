@@ -29,7 +29,7 @@
                     <img src="" alt="" class="mail-logo">SDUmail</a>
             </div>
             <div class="nav">
-                <a href="ai.html" class="to-ai">
+                <a href="ai-new.html" class="to-ai">
                     <img src="" alt="" class="ai-logo">AI</a>
             </div>
             <div class="nav">
@@ -40,10 +40,9 @@
         </div>
         <div class="container-2">
             <div class="user-info">
-                <p class="user">User: Student</p>
-                <p class="user-name">Name: Alibek Zhazit</p>
-                <p class="user-id">ID: 23BD080830</p>
-                <p class="user-mail">Email: a-zhazit@kbtu.kz</p>
+                <p class="user-name">Name: <span id="usernameDisplay"></span></p>
+                <p class="user-mail">Email: <span id="emailDisplay"></span></p>
+                
             </div>
             <div class="container">
                 <div class="timetable-img text-center">
@@ -325,7 +324,25 @@
     </main>
 
     <footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const username = localStorage.getItem('username');
+                const email = localStorage.getItem('email');
+                const usernameDisplay = document.getElementById('usernameDisplay');
+                const emailDisplay = document.getElementById('emailDisplay');
+                if (email) {
+                    emailDisplay.textContent = email;
+                } else {
+                    emailDisplay.textContent = 'Unknown';
+                }
 
+                if (username) {
+                    usernameDisplay.textContent = username;
+                } else {
+                    usernameDisplay.textContent = 'Unknown'; // Запасной текст, если имя пользователя не найдено
+                }
+            });            
+        </script>
     </footer>
 </body>
 
