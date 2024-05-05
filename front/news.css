@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    display:grid;
+    grid-auto-flow: column;
+    /* grid-template-columns: 10%, 90%; */
+    position: relative;
+}
+
+body {
+    background-color: rgb(33, 33, 83);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease-in-out;
+}
+
+p {
+    color: white;
+}
+
+a:hover {
+    color: rgb(243, 163, 103);
+    
+}
+
+.logo {
+    height: 25vh;
+}
+
+.container-1 {
+    position: fixed;
+    display: grid;
+    grid-row: auto;
+    border-right: 1px solid rgb(243, 163, 103);
+    height: 100%;
+    background-color: rgb(33, 33, 83);
+}
+
+.nav {
+    padding: 10px;
+    font-size: 25px;
+}
+
+.log-out:hover {
+    color:rgb(255, 39, 39)
+}
+
+.container-2 {
+    display: grid;
+    grid-column: auto;
+    padding-left: 30vh;
+    padding-right:
+}
+
+
+.news
+
+

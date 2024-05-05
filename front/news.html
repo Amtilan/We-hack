@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="schedule.css">
+</head>
+
+<body>
+    <main>
+        <div class="container-1">
+            <div class="nav-logo">
+                <a href="main.html" class="to-main">
+                    <img src="images.png" alt="" class="logo">
+                </a>
+            </div>
+            <div class="nav">
+                <a href="" class="to-news">
+                    <img src="" alt="" class="news-logo">News</a>
+            </div>
+            <div class="nav">
+                <a href="" class="to-schedule">
+                    <img src="" alt="" class="schedule-logo">Schedule</a>
+            </div>
+            <div class="nav">
+                <a href="" class="to-mail">
+                    <img src="" alt="" class="mail-logo">SDUmail</a>
+            </div>
+            <div class="nav">
+                <a href="ai-new.html" class="to-ai">
+                    <img src="" alt="" class="ai-logo">AI</a>
+            </div>
+            <div class="nav">
+                <a href="" class="log-out">
+                    <img src="" alt="" class="log-out-logo">Log-out
+                </a>
+            </div>
+        </div>
+        <div class="container-2">
+            <div class="user-info">
+                <p class="user-name">Name: <span id="usernameDisplay"></span></p>
+                <p class="user-mail">Email: <span id="emailDisplay"></span></p>
+            </div>
+            <div class="news-container">
+                <div class="news-item">
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const username = localStorage.getItem('username');
+                const email = localStorage.getItem('email');
+                const usernameDisplay = document.getElementById('usernameDisplay');
+                const emailDisplay = document.getElementById('emailDisplay');
+                if (email) {
+                    emailDisplay.textContent = email;
+                } else {
+                    emailDisplay.textContent = 'Unknown';
+                }
+
+                if (username) {
+                    usernameDisplay.textContent = username;
+                } else {
+                    usernameDisplay.textContent = 'Unknown'; // Запасной текст, если имя пользователя не найдено
+                }
+            });            
+        </script>
+    </footer>
+</body>
+
+</html>
