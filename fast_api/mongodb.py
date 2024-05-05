@@ -14,7 +14,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 class Token(BaseModel):
     access_token: str
     token_type: str
-    
 class ScheduleItem(BaseModel):
     room: str
     time: str 
@@ -24,7 +23,7 @@ class Schedule(BaseModel):
     schedule_items: List[ScheduleItem]
 class User(BaseModel):
     email: EmailStr
-    username: str = Field(..., min_length=3, max_length=40)
+    username: str = Field(..., min_length=3, max_length=20)
     password: str
 
 class MongoDBManager:
@@ -35,13 +34,13 @@ class MongoDBManager:
 
     def insert_user(self, user_data: User):
         user_data.password = self.hash_password(user_data.password)
-        if self.collection.find_one({"email": user_data.username}) or self.collection.find_one({"username": user_data.username}):
+        if self.collection.find_one({"email": user_data.email}) or self.collection.find_one({"username": user_data.username}):
             raise HTTPException(status_code=400, detail="Username or email already registered")
         self.collection.insert_one(user_data.dict())
         return "User registered successfully"
 
-    def authenticate_user(self, email: str, password: str):
-        user = self.collection.find_one({"email": email})
+    def authenticate_user(self, username: str, password: str):
+        user = self.collection.find_one({"username": username})
         if not user:
             return False
         if not self.verify_password(password, user["password"]):
